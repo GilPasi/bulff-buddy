@@ -1,13 +1,16 @@
 package com.github.gilpasi.bluffbuddy.server;
 
-/**
- * Hello world!
- *
- */
+import java.text.ParseException;
+
 public class App 
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        try {
+			System.out.println( Rank.Parse("7"));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 }
