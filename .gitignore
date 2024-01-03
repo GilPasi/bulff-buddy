@@ -23,3 +23,63 @@
 hs_err_pid*
 replay_pid*
 /.metadata/
+
+
+# Maven target directory
+target/
+
+# IDE-specific files
+*.class
+*.iml
+*.ipr
+*.iws
+*.log
+*.DS_Store
+
+# Eclipse-specific files
+.project
+.classpath
+.settings/
+
+# IntelliJ-specific files
+.idea/
+
+# Maven-specific files
+pom.xml.releaseBackup
+release.properties
+pom.xml.backup
+pom.xml.branch
+
+# Package files
+*.jar
+*.war
+*.ear
+
+# Compiled bytecode
+*.class
+
+# Mac-specific
+.DS_Store
+
+# Log files
+*.log
+
+# Gradle-specific
+.gradle/
+
+# Local configuration file (e.g., settings.xml for Maven)
+.settings.xml
+
+# Windows-specific files
+Thumbs.db
+ehthumbs.db
+
+# Linux/Unix specific
+*~
+
+# Configuration files
+*.prefs
+
+# Operating System files
+ehthumbs.db
+Thumbs.db
