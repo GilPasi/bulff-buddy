@@ -1,19 +1,24 @@
 package com.github.gilpasi.bluffbuddy.server;
 import java.text.ParseException;
 
+import utilities.ParseUtil;
 import utilities.TryResult;
 import utilities.Validator;
 
 public enum Rank {
-	ACE,TWO,THREE,
+	TWO,THREE,
 	FOUR,FIVE,SIX,
 	SEVEN,EIGHT,NINE,
-	TEN,JACK,QUEEN,KING;
+	TEN,JACK,QUEEN,KING,ACE;
+	
+	private static final int CARD_TO_INDEX_OFFSET = 2;
+	//All cards has an offset of 2 from their actual index
+	//as 2 is the lowest card in a deck
 	
 	
 	public static int getMinimumRank()
 	{
-		return ACE.ordinal()+ 1;
+		return TWO.ordinal()+ 1;
 	}
 	
 	public static int getMaximumRank()
@@ -32,7 +37,7 @@ public enum Rank {
 			return tryResult.getResult();
 		}
 		
-		tryResult = tryParseAsName(textToParse);
+		tryResult = ParseUtil.tryParseName(textToParse, values());
 		
 		if(tryResult.isSuccessful())
 		{
@@ -101,7 +106,8 @@ public enum Rank {
 		
 		if(Validator.isIntInRange(getMinimumRank(), getMaximumRank() + 1, rankIndex))
 		{
-			tryResult.setResult(Rank.values()[rankIndex - 1]);
+			
+			tryResult.setResult(Rank.values()[rankIndex - CARD_TO_INDEX_OFFSET]);
 			tryResult.setSuccess(true);
 			return tryResult;
 		}
@@ -113,22 +119,4 @@ public enum Rank {
 			return tryResult;
 		}		
 	}
-	
-	private static TryResult<Rank> tryParseAsName(String textToParse)
-	{
-		TryResult<Rank> tryResult = new TryResult<Rank>();
-		
-		for(Rank rank : Rank.values())
-		{
-			if(textToParse.equals(rank.toString()))
-			{
-				tryResult.setResult(rank);;
-				return tryResult;
-			}
-		}
-		tryResult.setMessage("The given text does not match any of the ranks");
-		tryResult.setSuccess(false);
-		return tryResult;
-	}
-
 }
